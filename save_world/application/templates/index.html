@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Save World</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename="css/bootstrap.min.css") }}"
+    </head>
+    <body>
+        <script src="{{ url_for('static', filename="js/jquery-3.5.1.min.js") }}"></script>
+        <script src="{{  url_for('static', filename="js/bootstrap.min.js" ) }}"></script>
+        <h1>Lets save the world</h1>
+        <p>
+        <div class="container">
+            <p class="lead font-weight-bold">Add new saviours</p>
+        <form id="new-saviour-data">
+            <label for="dtime">When was saved: </label>
+            <input id="when-saved" type="datetime" name="dtime" placeholder="Eg: yyyy-mm-dd hour:min:sec"><br/>
+            <label for="howsaved">How the world was saved? </label>
+            <input id="how-saved" type="text" name="howsaved"><br/>
+            <label for="thanks_to_people">We are thankful to: </label>
+            <textarea id="thankful-to" class="form-control" name="thanks_to_people"></textarea><br/>
+            <input type="submit" value="Submit">
+        </form>
+
+        <script  src="{{ url_for('static', filename="js/newsaveworld.js" )  }}"></script>
+
+        </div>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+version: '3'
+
+services: 
+    postgresdb:
+        restart: always
+        image: postgres:latest
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data
+        ports: 
+            - "5432:5432"
+        environment:
+            POSTGRES_PASSWORD: secret
+
+    save_world:
+        restart: always
+        build:
+            context: .
+        depends_on:
+            - postgresdb
+        links:
+            - postgresdb
+        volumes:
+            - ".:/usr/src/app"
+        ports:
+            - "8080:8080"
+        command: python manage.py create_db
+
+volumes:
+    postgres-data:
